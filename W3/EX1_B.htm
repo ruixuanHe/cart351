@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> EXERCISE 2B </title>
+  <style>
+    .box {
+      width: 10vw;
+      /*(1/10th) viewport width */
+      height: 10vw;
+      margin-left: 1%;
+      margin-top: 1%;
+      display: inline-block;
+    }
+
+    #c {
+      background-color: #3e181b;
+      border: 3px solid #db1d2d;
+    }
+
+    #d {
+      background-color: #422018;
+      border: 3px solid #f0421c;
+    }
+
+    #e {
+      background-color: #45391b;
+      border: 3px solid #fec02d;
+    }
+
+
+    body {
+      background: black;
+    }
+
+    .wrapper {
+      margin-left: 30%;
+      margin-top: 15%;
+    }
+
+    canvas {
+      background: black;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+
+
+      let mouseIn = 'none'; // this variable will keep track of when and if the mouse is within one of the canvas(es)
+
+      // this event handler will register in which box is the mouse
+      let mouseoverhandler = function(event) {
+        mouseIn = event.target.id;
+        console.log("the mouse is over canvas:: " + mouseIn);
+      }
+      // this event handler will register that the mouse is no longer over a particular box
+      let mouseouthandler = function(event) {
+        console.log("the mouse is no longer over canvas:: " + event.target.id);
+        mouseIn = 'none';
+      }
+
+      /* STEP 1:
+      /* THis is showing you how to access the canvas associated with the first box
+      It also shows you how to access the associated drawing context
+      and adding the relevent event listeners. You can follow this code for
+      accessing the other canvases and their associated contexts.
+      */
+
+
+      let canvasAniA = document.getElementById("canvasAniA")
+      let canvasAniB = document.getElementById("canvasAniB")
+      let canvasAniC = document.getElementById("canvasAniC")
+      //get the context
+      let contextA = canvasAniA.getContext("2d");
+      let contextB = canvasAniB.getContext("2d");
+      let contextC = canvasAniC.getContext("2d");
+
+      // register event listeners with 1st box
+      canvasAniA.addEventListener('mousemove', mouseoverhandler);
+      canvasAniA.addEventListener('mouseout', mouseouthandler);
+      canvasAniB.addEventListener('mousemove', mouseoverhandler);
+      canvasAniB.addEventListener('mouseout', mouseouthandler);
+      canvasAniC.addEventListener('mousemove', mouseoverhandler);
+      canvasAniC.addEventListener('mouseout', mouseouthandler);
+
+      /*** The lists of objects that will be indide each canvas **/
+      let rectList = []; // variable to hold your list of rectangles
+      let ellipsesList = []; //variable to hold your list of ellipses
+      let freeShapeList = []; //variable to hold your list of free shapes
+
+      /* STEP 2:: CREATE 10 RectShapeObject instances and put into the rectList */
+      var rectX = 0;
+      var rectY = 0;
+      var rectW = 50;
+      var rectH = 50;
+      for (var i = 0; i < 10; i++) {
+        rectList.push(new RectShapeObject(rectX + i, rectY + i, rectW + i, rectH + i, contextA, canvasAniA, 'rgb(' +
+          Math.floor(Math.random() * 256) + ',' +
+          Math.floor(Math.random() * 256) + ',' +
+          Math.floor(Math.random() * 256) + ')'))
+      }
+      /* STEP 3:: CREATE 10 EllipseShapeObject instances and put into the ellipsesList */
+      var ellipseX = 0;
+      var ellipseY = 0;
+      var ellipseW = 50;
+      var ellipseH = 50;
+      for (var i = 0; i < 10; i++) {
+        ellipsesList.push(new EllipseShapeObject(ellipseX + i, ellipseY + i, ellipseW + i, ellipseH + i, contextB, canvasAniB, 'rgb(' +
+          Math.floor(Math.random() * 256) + ',' +
+          Math.floor(Math.random() * 256) + ',' +
+          Math.floor(Math.random() * 256) + ')'))
+      }
+      /* STEP 4:: CREATE 10 FreeShapeObject instances and put into the freeShapeList */
+      var freeShapeX = 0;
+      var freeShapeY = 0;
+      var freeShapeW = Math.floor(Math.random() * (Math.floor(100) - Math.ceil(30) + 1)) + Math.ceil(30);
+      var freeShapeH = Math.floor(Math.random() * (Math.floor(100) - Math.ceil(30) + 1)) + Math.ceil(30);
+      for (var i = 0; i < 10; i++) {
+        freeShapeList.push(new FreeShapeObject(freeShapeX + i, freeShapeY + i, Math.floor(Math.random() * (Math.floor(60) - Math.ceil(30) + 1)) + Math.ceil(30), Math.floor(Math.random() * (Math.floor(60) - Math.ceil(30) + 1)) + Math.ceil(30),
+          contextC, canvasAniC, 'rgb(' +
+          Math.floor(Math.random() * 256) + ',' +
+          Math.floor(Math.random() * 256) + ',' +
+          Math.floor(Math.random() * 256) + ')'))
+      }
+      /* STEP 5:: implement the display and update methods for each shape
+      (RectShapeObject,EllipseShapeObject,FreeShapeObject)
+      using the Object definitions I have given you as a starting point.
+      The animation and design of your shape(s) is up to you */
+
+      /**** ANIMATION CODE *****************/
+      requestAnimationFrame(animationLoop);
+      /*MAIN ANIMATION LOOP */
+      function animationLoop() {
+        contextA.clearRect(0, 0, canvasAniA.width, canvasAniA.height);
+        contextB.clearRect(0, 0, canvasAniB.width, canvasAniB.height);
+        contextC.clearRect(0, 0, canvasAniC.width, canvasAniC.height);
+        if (mouseIn === "canvasAniA") {
+          console.log("over canvas A");
+          // put code here to display and update contents in canvasAniA
+          /* STEP 6:: go through the rectList  and display and update shapes  */
+          for (var i = 0; i < rectList.length; i++) {
+            rectList[i].display();
+            rectList[i].update();
+          }
+        } else if (mouseIn === "canvasAniB") {
+          console.log("over canvas B");
+          // put code here to display and update contents in canvasAniB
+          /* STEP 7:: go through the ellipsesList  and display and update shapes  */
+          for (var i = 0; i < ellipsesList.length; i++) {
+            ellipsesList[i].display();
+            ellipsesList[i].update();
+          }
+        } else if (mouseIn === "canvasAniC") {
+          console.log("over canvas C");
+          // put code here to display and update contents in canvasAniC
+          /* STEP 8:: go through the freeShapeList  and display and update shapes  */
+          for (var i = 0; i < freeShapeList.length; i++) {
+            freeShapeList[i].display();
+            freeShapeList[i].update();
+          }
+        }
+        requestAnimationFrame(animationLoop);
+      }
+
+      /***** OBJECT DEFINITIONS  ***********************/
+      /* OBJECT DEFINITION FOR A SQUARE OBJECT SHAPE
+      constructor takes an initial xpos, ypos, width and height for the shape.
+      You also need to give the context and canvas associated
+      with the potential instance of this shape
+      */
+
+
+      function RectShapeObject(x, y, w, h, context, canvas, color) {
+        this.context = context;
+        this.canvas = canvas;
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.Vx = Math.random(1, 7);
+        this.Vy = Math.random(1, 5);
+        this.color = color;
+        // method to display - needs to be filled in
+        this.display = function() {
+          this.context.fillStyle = this.color;
+          this.context.fillRect(this.x, this.y, this.w, this.h);
+
+        }
+        // method to update (animation) - needs to be filled in
+        this.update = function() {
+          this.x += this.Vx;
+          this.y += this.Vy;
+          if (this.y + this.h > this.canvas.height || this.y < 0) {
+            this.Vy = -this.Vy;
+          }
+          if (this.x + this.w > this.canvas.width || this.x < 0) {
+            this.Vx = -this.Vx;
+          }
+
+        }
+      }
+
+      /* OBJECT DEFINITION FOR An Ellipse OBJECT SHAPE
+      constructor takes an initial xpos, ypos, width and height for the shape.
+      You also need to give the context and canvas associated
+      with the potential instance of this shape
+      */
+      function EllipseShapeObject(x, y, w, h, context, canvas, color) {
+        this.context = context;
+        this.canvas = canvas;
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.color = color;
+        this.lineWidth = 5;
+        this.lineWidthChange = Math.random(2, 3);
+        this.Vx = Math.random(1, 7);
+        this.Vy = Math.random(1, 5);
+
+        // method to display - needs to be filled in
+        this.display = function() {
+          this.context.lineWidth = this.lineWidth;
+          var radiusX = this.w / 2,
+            radiusY = this.h / 2,
+            centerX = this.x + radiusX,
+            centerY = this.y + radiusY,
+            step = 0.01,
+            a = step,
+            pi2 = Math.PI * 2 - step;
+
+          this.context.beginPath();
+
+
+          this.context.moveTo(centerX + radiusX * Math.cos(0),
+            centerY + radiusY * Math.sin(0));
+
+          for (; a < pi2; a += step) {
+            this.context.lineTo(centerX + radiusX * Math.cos(a),
+              centerY + radiusY * Math.sin(a));
+          }
+
+          this.context.closePath();
+          this.context.strokeStyle = this.color;
+          this.context.stroke();
+        }
+        // method to update (animation) - needs to be filled in
+        this.update = function() {
+          this.lineWidth += this.lineWidthChange;
+          if (this.lineWidth > 15 || this.lineWidth < 5) {
+            this.lineWidthChange = -this.lineWidthChange;
+          }
+          this.x += this.Vx;
+          this.y += this.Vy;
+          if (this.y + this.h > this.canvas.height || this.y < 0) {
+            this.Vy = -this.Vy;
+          }
+          if (this.x + this.w > this.canvas.width || this.x < 0) {
+            this.Vx = -this.Vx;
+          }
+        }
+      }
+      /* OBJECT DEFINITION FOR A Free OBJECT SHAPE
+      constructor takes an initial xpos, ypos, width and height for the shape.
+      You also need to give the context and canvas associated
+      with the potential instance of this shape
+      */
+      function FreeShapeObject(x, y, w, h, context, canvas, color) {
+        this.context = context;
+        this.canvas = canvas;
+        this.x1 = x;
+        this.y1 = y;
+        this.x2 = x + h;
+        this.y2 = y + w;
+        this.x3 = x + w;
+        this.y3 = y - h;
+        this.x4 = x + w;
+        this.y4 = y + h;
+        this.w = w;
+        this.h = h;
+        this.Vx = Math.floor(Math.random() * (Math.floor(2) - Math.ceil(-2) + 1)) + Math.ceil(-2);
+        this.Vy = Math.floor(Math.random() * (Math.floor(2) - Math.ceil(-2) + 1)) + Math.ceil(-2);
+        this.color = color;
+        // method to display - needs to be filled in
+        this.display = function() {
+          this.context.beginPath();
+          this.context.moveTo(this.x1, this.y1);
+          this.context.lineTo(this.x2, this.y2);
+          this.context.lineTo(this.x3, this.y3);
+          this.context.lineTo(this.x4, this.y4);
+          this.context.lineTo(this.x1, this.y1);
+          this.context.fillStyle = this.color;
+          this.context.fill();
+        }
+        // method to update (animation) - needs to be filled in
+        this.update = function() {
+          this.x1 += this.Vx;
+          this.y1 += this.Vy;
+          this.x2 += this.Vx;
+          this.y2 += this.Vy;
+          this.x3 += this.Vx;
+          this.y3 += this.Vy;
+          this.x4 += this.Vx;
+          this.y4 += this.Vy;
+          if (this.y1 + this.h > this.canvas.height || this.y1 < 0) {
+            this.Vy = -this.Vy;
+          }
+          if (this.x1 + this.w > this.canvas.width || this.x1 < 0) {
+            this.Vx = -this.Vx;
+          }
+        }
+
+      }
+
+    } //on load
+  </script>
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="c" class="box"><canvas id="canvasAniA"></canvas></div>
+    <div id="d" class="box"><canvas id="canvasAniB"></canvas></div>
+    <div id="e" class="box"><canvas id="canvasAniC"></canvas></div>
+  </div>
+
+</body>
+
+</html>
