@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+
+  <!-- CSS stylesheet(s) -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="mainContent">
+    <div class="title">
+      <div class="mainTitle">
+        CART 351 Final Project
+      </div>
+      <div class="subTitle">
+        Proposal
+      </div>
+    </div>
+    <div class="content">
+      <div class="sketch">
+        <div class="pic">
+
+        </div>
+        <div class="button">
+          <span class="dot" id="img1"></span>
+          <span class="dot" id="img2"></span>
+          <span class="dot" id="img3"></span>
+          <span class="dot" id="img4"></span>
+          <span class="dot" id="img5"></span>
+        </div>
+        <div class="picText">
+          Homepage
+        </div>
+      </div>
+      <div class="document">
+        <div class="dotContent">
+          <p id="dot">Description of the Themes</p>
+          <div class="link">
+            <a id="rsLink" href="../assets/pdfs/CART351_Proposal_description.pdf">Click to Read</a>
+          </div>
+
+        </div>
+        <div class="rsContent">
+          <p id="rs">Research Summary</p>
+          <div class="link">
+            <a id="rsLink" href="../assets/pdfs/CART351_Prpposal_research.pdf">Click to Read</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+$( "#img1" ).click(function() {
+$(".pic").css('background-image', 'url(../assets/images/img1.jpg)');
+$('.picText').text("Homepage");
+});
+$( "#img2" ).click(function() {
+$(".pic").css('background-image', 'url(../assets/images/img2.jpg)');
+$('.picText').text("Dashboard");
+});
+$( "#img3" ).click(function() {
+$(".pic").css('background-image', 'url(../assets/images/img3.jpg)');
+$('.picText').text("Forum");
+});
+$( "#img4" ).click(function() {
+$(".pic").css('background-image', 'url(../assets/images/img4.jpg)');
+$('.picText').text("Documentation");
+});
+$( "#img5" ).click(function() {
+$(".pic").css('background-image', 'url(../assets/images/img5.jpg)');
+$('.picText').text("Signin");
+});
+</script>
+</html>

@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Roboto:400,700,700i,900,900i&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  background-color: black;
+  font-family: 'Poiret One', cursive;
+}
+
+.mainContent {
+  width: 100%;
+  height: 100%;
+}
+
+.title{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 50px;
+}
+.mainTitle{
+  font-size: 70px;
+  display: flex;
+  justify-content: center;
+}
+.subTitle{
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+}
+.content{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 130px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.pic{
+  background-image: url("../assets/images/img1.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.sketch{
+  position: relative;
+  background-color: black;
+  width: 400px;
+  height: 500px;
+}
+.document{
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.dotContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.rsContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.button{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position:absolute;
+  bottom: -35px;
+}
+.picText{position: relative;
+  top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.dot {
+  margin: 10px;
+  height: 15px;
+  width: 15px;
+  background-color: grey;
+  border-radius: 50%;
+  display: inline-block;
+    transition: 0.3s ease;
+}
+.dot:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+a{
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+  color: grey;
+  transition: 0.3s ease;
+}
+a:hover{
+  font-size: 22px;
+  text-decoration: none;
+  color: white;
+}
