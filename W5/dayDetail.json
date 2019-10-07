@@ -1,0 +1,34 @@
+{
+  "Day1": [{
+    "transportation": "bus",
+    "breakfast": "dumpling",
+    "lunch": "beef",
+    "dinner": "elephant",
+    "clothing": "hoodie",
+    "exercise": "basketball"
+  }],
+  "Day2": [{
+    "transportation": "metro",
+    "breakfast": "noodle",
+    "lunch": "pork",
+    "dinner": "tiger",
+    "clothing": "naked",
+    "exercise": "hocday"
+  }],
+  "Day3": [{
+    "transportation": "helicopter",
+    "breakfast": "milk & bread",
+    "lunch": "lamp",
+    "dinner": "dinosaurs",
+    "clothing": "shorts",
+    "exercise": "chatch pokemon"
+  }],
+  "Day4": [{
+    "transportation": "rocket",
+    "breakfast": "sandwitch",
+    "lunch": "shrimp",
+    "dinner": "whale",
+    "clothing": "t-shirt",
+    "exercise": "peekaboo"
+  }]
+}
