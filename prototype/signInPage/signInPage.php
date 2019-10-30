@@ -1,4 +1,15 @@
 <?php
+session_start();
+$showLoginMessage = false;
+if(isset($_SESSION['isLogin'])){
+  if ($_SESSION['isLogin'] == true) {
+    $showLoginMessage = true;
+    $currentUser = $_SESSION['currentUser'];
+  }
+}  else {
+  $showLoginMessage = false;
+  $currentUser = 'unknown';
+};
 $file = '..\dataBase\authentication.json';
 $showMessage = false;
 $validedUser = false;
@@ -6,6 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
   $userEmail = $_POST['userEmail'];
   $userPassword = $_POST['userPassword'];
+  $userName = $username = strstr($userEmail, '@', true);
 
   if (is_null(json_decode(file_get_contents($file)))){
     $dataArray = array();
@@ -19,8 +31,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
   }
 
   if ($validedUser == true) {
-    header('Location: ..\homePage\homePage.html');
+    $_SESSION['isLogin'] = true;
+    $_SESSION['currentUser'] = $userName;
+    $_SESSION['userEmail'] = $userEmail;
+    header('Location: ..\homePage\homePage.php');
   } else {
+    $_SESSION['isLogin'] = false;
+    $_SESSION['currentUser'] = 'unknown';
+        $_SESSION['userEmail'] = 'unknown';
     $showMessage = true;
   }
 }
@@ -37,12 +55,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 <!--set some style properties::: -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="../masterCss.css">
+<script>
+var showLoginMessage = <?php echo json_encode($showLoginMessage); ?>;
+var currentUser = <?php echo json_encode($currentUser); ?>;
+</script>
+<script src="../navbar.js">
+</script>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-      <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
       Prototype
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,12 +73,31 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home</a>
+        <li class="nav-item">
+          <a class="nav-link" href="..\homePage\homePage.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="../forum\forum.php">Forum</a>
         </li>
+      </ul>
+      <ul class="navbar-nav ml-auto" id="navLeft">
+
+        <script id="nonloginTemplate" type="text/x-custom-template">
+        <li class="nav-item">
+          <a class="nav-link" href="..\signUpPage\signUpPage.php">Sign Up</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="..\signInPage\signInPage.php">Login</a>
+        </li>
+        </script>
+        <script id="isLoginTemplate" type="text/x-custom-template">
+        <li class="nav-item">
+          <a class="nav-link" href="..\userCenter\userCenter.php" id="loginInfo"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="..\logout.php">Log Out</a>
+        </li>
+        </script>
       </ul>
     </div>
   </nav>
@@ -70,7 +112,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         <label for="exampleInputPassword1">Password</label>
         <input type="password" class="form-control" name='userPassword' id="exampleInputPassword1" placeholder="Password" required>
       </div>
-      <button type="submit" class="btn btn-primary">Sign In</button>
+      <button type="submit" class="btn btn-primary btn-md btn-block">Login</button>
       <a href="..\signUpPage\signUpPage.php">Sign Up A Account?</a>
 
       <?php
