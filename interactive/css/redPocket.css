@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'zqlqxsj';
+  src: url('../assets/zqlqxsj.ttf') format('truetype');
+}
+
+html {
+  box-sizing: border-box;
+}
+
+html body {
+  height: 100vh;
+  width: 100%;
+  font-family: 'Poiret One', cursive;
+  font-size: 50px;
+}
+
+body {
+  background-color: rgba(255, 102, 102);
+  padding: 0;
+  margin: 0;
+}
+
+.pic {
+  position: absolute;
+  top: 50%;
+  /* position the top  edge of the element at the middle of the parent */
+  left: 50%;
+  /* position the left edge of the element at the middle of the parent */
+  transform: translate(-50%, -30%);
+    z-index: 999;
+}
+
+.text {
+  font-family: zqlqxsj;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 80px;
+  position: absolute;
+  top: 10%;
+  /* position the top  edge of the element at the middle of the parent */
+  left: 50%;
+  /* position the left edge of the element at the middle of the parent */
+  transform: translate(-50%, 40%);
+  opacity: 0;
+  transition: ease 0.5s;
+
+}
+
+.moveup {
+  transform: translate(-50%, -120%);
+  opacity: 1;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+
+  <!-- CSS stylesheet(s) -->
+  <link rel="stylesheet" type="text/css" href="css/redPocket.css" />
+  <!-- Library script(s) -->
+  <script src="js/libraries/p5.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="..\js\redPocket.js" charset="utf-8"></script>
+  <!-- My script(s) -->
+</head>
+
+<body>
+  <div class="pic">
+    <img src="..\assets\images\KUqzRay4VQ.png" alt="">
+  </div>
+  <div class="text">
+    <p>恭喜发财</p>
+  </div>
+</body>
+<script type="text/javascript">
+  $(".pic").hover(
+    function() {
+      $(".text").css({
+        "opacity": "1",
+        "transform": "translate(-50%, -20%)"
+      })
+    },
+
+    function() {
+      $(".text").css({
+        "opacity": "0",
+        "transform": "translate(-50%, 40%)"
+      })
+    }
+  );
+</script>
+
+</html>
