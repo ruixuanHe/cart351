@@ -2,29 +2,25 @@
 <html lang="en" style="height:100%">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Sample Contact and FahrenHeit/Celsius Form </title>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 var showLoginMessage = <?php echo json_encode($showLoginMessage); ?>;
 var currentUser = <?php echo json_encode($currentUser); ?>;
-function gotoLogin(){
-  window.location.href = "../signInPage/signInPage.php";
-}
-function gotoSignUp(){
-  window.location.href = "../signUpPage/signUpPage.php";
-}
 </script>
 <script src="../navbar.js">
+</script>
+<script src="../vote/vote.js">
 </script>
 <!--set some style properties::: -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="../masterCss.css">
 </head>
 
-<body style="height:100%;>
+<body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
       Prototype
@@ -38,7 +34,10 @@ function gotoSignUp(){
           <a class="nav-link" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../forum\forum.php">Forum</a>
+          <a class="nav-link" href="../forum/forum.php">Forum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../vote/vote.php">Vote</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto" id="navLeft">
@@ -64,12 +63,37 @@ function gotoSignUp(){
   </nav>
   <!-- signup form -->
   <div class="container">
-      <div class="col-md-4"></div>
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Topic</th>
+        <th scope="col">Author</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
 
-      <div class="col-md-4">
+        <td id= "clickme">Topic</td>
+        <td>Author</td>
+        <td>Date</td>
+      </tr>
+      <tr>
+        <td>Topic2</td>
+        <td>Author2</td>
+        <td>Date2</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+
+
+  <div class="container" id="voteSection" style="display:none;">
+      <div class="col-md-12">
           <div class="card card-primary">
               <div class="card-header">
-                  <h3 class="card-header"><span class="fa fa-line-chart"></span> Please Rate our service</h3>
+                  <h3 class="card-header"><span class="fa fa-line-chart"></span> Voting Problem</h3>
               </div>
               <div class="card-block">
                   <ul class="list-group">

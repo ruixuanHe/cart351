@@ -57,6 +57,12 @@ function gotoSignUp(){
         <li class="nav-item">
           <a class="nav-link" href="../forum\forum.php">Forum</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../vote/vote.php">Vote</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Cart351 Project proposal.pdf">Project Proposal</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto" id="navLeft">
 

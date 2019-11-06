@@ -50,6 +50,12 @@ var currentUser = <?php echo json_encode($currentUser); ?>;
         <li class="nav-item">
           <a class="nav-link" href="../forum\forum.php">Forum</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../vote/vote.php">Vote</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Cart351 Project proposal.pdf">Project Proposal</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto" id="navLeft">
 
@@ -77,7 +83,7 @@ var currentUser = <?php echo json_encode($currentUser); ?>;
   <div class="container">
   <div class="col-md-12">
       <div class="form-group">
-          <label>Upload Image</label>
+          <label>Upload Avatar</label>
           <img id='img-upload'/>
           <div class="input-group">
               <span class="input-group-btn">
@@ -87,8 +93,27 @@ var currentUser = <?php echo json_encode($currentUser); ?>;
               </span>
               <input type="text" class="form-control" readonly>
           </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Age</label>
+            <input  class="form-control" name='userEmail' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Age" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Condo Unit</label>
+            <input  class="form-control" name='userPassword' id="exampleInputPassword1" placeholder="Enter Condo Unit" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-md btn-block">Submit</button>
       </div>
   </div>
+  </div>
+  <div class="container">
+    <h1>Current Action</h1>
+    <ul class="list-group">
+      <li class="list-group-item"><a href="#">Post Topic: AAAA</a></li>
+      <li class="list-group-item"><a href="#">Start Vote Topic: AAAAA</a></li>
+      <li class="list-group-item"><a href="#">Post Topic: AAAA</a></li>
+      <li class="list-group-item"><a href="#">Start Vote Topic: AAAAA</a></li>
+      <li class="list-group-item"><a href="#">Start Vote Topic: AAAAA</a></li>
+    </ul>
   </div>
 </body>
 

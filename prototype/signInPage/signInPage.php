@@ -10,7 +10,7 @@ if(isset($_SESSION['isLogin'])){
   $showLoginMessage = false;
   $currentUser = 'unknown';
 };
-$file = '..\dataBase\authentication.json';
+$file = '../dataBase/authentication.json';
 $showMessage = false;
 $validedUser = false;
 if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -78,6 +78,12 @@ var currentUser = <?php echo json_encode($currentUser); ?>;
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../forum\forum.php">Forum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../vote/vote.php">Vote</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Cart351 Project proposal.pdf">Project Proposal</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto" id="navLeft">
